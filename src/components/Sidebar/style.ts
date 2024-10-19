@@ -30,7 +30,7 @@ export const Container = styled.aside<ContainerProps>`
 
     nav {
         flex: 1;
-        widows: 100%;
+        width: 100%;
         height: 100%;
 
         ul {
