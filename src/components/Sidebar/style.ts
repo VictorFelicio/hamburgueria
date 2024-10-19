@@ -20,7 +20,7 @@ export const Container = styled.aside<ContainerProps>`
     flex-direction: column;
     align-items: center;
 
-    transition: width 0.5s;
+    transition: width 0.4s;
 
     button {
         background: none;
@@ -55,12 +55,12 @@ export const Container = styled.aside<ContainerProps>`
                     fill: ${(props) => props.theme.colors.white};
                     width: 4rem;
                     height: 4rem;
-                    transition: fill 0.5s;
+                    transition: fill 0.4s;
                 }
 
                 span {
                     font-size: 1rem;
-                    transition: color 0.5s;
+                    transition: color 0.4s;
                 }
 
                 &.active {
@@ -86,6 +86,54 @@ export const Container = styled.aside<ContainerProps>`
 
                     span {
                         color: ${(props) => props.theme.colors.yellow};
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 720px) {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+
+        width: 100%;
+        height: 5rem;
+        padding: 0 0;
+        overflow-y: auto;
+
+        button {
+            display: none;
+        }
+
+        nav {
+            height: 100%;
+
+            ul {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            li {
+                a {
+                    flex-direction: column;
+                    padding: 0rem;
+
+                    svg {
+                        width: 3.25rem;
+                        height: 3.25rem;
+                    }
+
+                    span {
+                        display: none;
+                    }
+
+                    &.active {
+                        &::after {
+                            display: none;
+                        }
                     }
                 }
             }
