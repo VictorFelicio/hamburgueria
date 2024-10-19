@@ -8,9 +8,7 @@ export default function Main() {
         <Container>
             <Sidebar />
             <section>
-                <span className="logo">
-                    <LogoImg />
-                </span>
+                <LogoImg />
                 <Outlet />
             </section>
         </Container>

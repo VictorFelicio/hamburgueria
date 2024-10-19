@@ -5,6 +5,8 @@ import SodaIcon from './../../assets/soda.svg';
 import IceCreamIcon from './../../assets/ice-cream.svg';
 import MenuIcon from './../../assets/menu.svg';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 export function Sidebar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const handleToggleMenu = () => {
@@ -18,28 +20,28 @@ export function Sidebar() {
             <nav>
                 <ul>
                     <li>
-                        <a href="#" className="active">
+                        <NavLink to="/">
                             <BurgerIcon />
                             <span>Hambúrgueres</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="">
+                        <NavLink to="/pizzas">
                             <PizzaIcon />
                             <span>Pizzas</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="">
+                        <NavLink to="/drinks">
                             <SodaIcon />
                             <span>Bebidas</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="">
+                        <NavLink to="/candys">
                             <IceCreamIcon />
                             <span>Sobremesas</span>
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
