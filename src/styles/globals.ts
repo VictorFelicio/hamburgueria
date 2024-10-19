@@ -8,6 +8,6 @@ html, border-style, #root{
 body{
     background:${(props) => props.theme.colors.gray900};    
     color: ${(props) => props.theme.colors.white};
-    font-family: ${(props) => props.theme.fontFamily.sans};
+    font-family: ${(props) => props.theme.fontFamily.heading};
 }
 `;
