@@ -61,6 +61,7 @@ export const Container = styled.aside<ContainerProps>`
                 span {
                     font-size: 1rem;
                     transition: color 0.4s;
+                    letter-spacing: 0.2rem;
                 }
 
                 &.active {

@@ -36,7 +36,7 @@ const theme: DefaultTheme = {
     },
     fontFamily: {
         heading: ['Bebas Neue', 'IBM Plex Sans', 'sans-serif'].join(','),
-        sans: ['Open Sans', 'Arial', 'Helvetica', 'sans-serif'].join(','),
+        sans: ['Montserrat', 'Arial', 'Helvetica', 'sans-serif'].join(','),
         mono: ['IBM Plex Mono', 'serif'].join(','),
     },
     fontSize: {
