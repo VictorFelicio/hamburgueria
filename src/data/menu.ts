@@ -1,5 +1,5 @@
 export const menu = {
-    burges: [
+    burgers: [
         {
             id: 1,
             snack: 'burger',
