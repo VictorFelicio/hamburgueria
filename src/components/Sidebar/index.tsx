@@ -13,8 +13,11 @@ export function Sidebar() {
         setMenuOpen(!menuOpen);
     };
     return (
-        <Container isMenuOpen={menuOpen}>
-            <button type="button" onClick={handleToggleMenu}>
+        <Container ismenuopen={menuOpen}>
+            <button
+                type="button"
+                onClick={handleToggleMenu}
+            >
                 <MenuIcon />
             </button>
             <nav>
