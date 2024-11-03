@@ -2,18 +2,10 @@ import { FiPlus } from 'react-icons/fi';
 import { Container } from './style';
 import { coinFormat } from '../../utils/coinFormat';
 import { SkeletonSnack } from './SkeletonSnack';
+import { SnackData } from '../../interfaces/SnackData';
 
 export interface SnacksProps {
-    snacks: Itens[];
-}
-
-interface Itens {
-    id: number;
-    snack: string;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
+    snacks: SnackData[];
 }
 
 export function Snacks(props: SnacksProps) {

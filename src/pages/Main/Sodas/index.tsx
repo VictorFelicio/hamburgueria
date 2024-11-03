@@ -3,9 +3,10 @@ import { Head } from '../../../components/Head';
 import { Snacks } from '../../../components/Snacks';
 import { SnackTitle } from '../../../components/SnackTitle';
 import { getDrinks } from '../../../services/api';
+import { SnackData } from '../../../interfaces/SnackData';
 
 export function Sodas() {
-    const [drinks, setDrinks] = useState([]);
+    const [drinks, setDrinks] = useState<SnackData[]>([]);
 
     useEffect(() => {
         (async () => {

@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { SnackData } from '../interfaces/SnackData';
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
 });
 
-export const getBurgers = () => api.get('/burgers');
-export const getPizzas = () => api.get('/pizzas');
-export const getDrinks = () => api.get('/drinks');
-export const getCandys = () => api.get('/candys');
+export const getBurgers = () => api.get<SnackData[]>('/burgers');
+export const getPizzas = () => api.get<SnackData[]>('/pizzas');
+export const getDrinks = () => api.get<SnackData[]>('/drinks');
+export const getCandys = () => api.get<SnackData[]>('/candys');
