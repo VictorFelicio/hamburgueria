@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import { SnackData } from '../interfaces/SnackData';
 
 import { getBurgers, getDrinks, getCandys, getPizzas } from '../services/api';
+import { menu } from '../data/menu';
 
 interface SnackContextProps {
     burgers: SnackData[];
@@ -24,33 +25,41 @@ export function SnackProvider({ children }: SnackProviderProps) {
     const [candys, setCandys] = useState<SnackData[]>([]);
 
     useEffect(() => {
+        const mockData = import.meta.env.VITE_MOCK_DATA;
         (async () => {
-            try {
-                const burgerRequest = await getBurgers();
-                const pizzaRequest = await getPizzas();
-                const drinkRequest = await getDrinks();
-                const candyRequest = await getCandys();
+            if (mockData) {
+                setBurgers(menu.burgers);
+                setPizzas(menu.pizzas);
+                setDrinks(menu.drinks);
+                setCandys(menu.candys);
+            } else {
+                try {
+                    const burgerRequest = await getBurgers();
+                    const pizzaRequest = await getPizzas();
+                    const drinkRequest = await getDrinks();
+                    const candyRequest = await getCandys();
 
-                const requests = [
-                    burgerRequest,
-                    pizzaRequest,
-                    drinkRequest,
-                    candyRequest,
-                ];
+                    const requests = [
+                        burgerRequest,
+                        pizzaRequest,
+                        drinkRequest,
+                        candyRequest,
+                    ];
 
-                const [
-                    { data: burgerResponse },
-                    { data: pizzaResponse },
-                    { data: drinkResponse },
-                    { data: candyResponse },
-                ] = await Promise.all(requests);
+                    const [
+                        { data: burgerResponse },
+                        { data: pizzaResponse },
+                        { data: drinkResponse },
+                        { data: candyResponse },
+                    ] = await Promise.all(requests);
 
-                setBurgers(burgerResponse);
-                setPizzas(pizzaResponse);
-                setDrinks(drinkResponse);
-                setCandys(candyResponse);
-            } catch (error) {
-                console.error(error);
+                    setBurgers(burgerResponse);
+                    setPizzas(pizzaResponse);
+                    setDrinks(drinkResponse);
+                    setCandys(candyResponse);
+                } catch (error) {
+                    console.error(error);
+                }
             }
         })();
     }, []);
