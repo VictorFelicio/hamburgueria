@@ -192,7 +192,7 @@ export const menu = {
             snack: 'ice-cream',
             name: 'Flocos',
             description:
-                'O tradicional flocos vem com cobertura em chocolate para adocicar seu dia.',
+                'O tradicional flocos vem com cobertura em chocolate para adocicar nossos dia.',
             price: 7,
             image: 'https://i.imgur.com/qgnFLiy.jpg',
         },
