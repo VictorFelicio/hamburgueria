@@ -3,12 +3,15 @@ import { Container } from './style';
 import { coinFormat } from '../../utils/coinFormat';
 import { SkeletonSnack } from './SkeletonSnack';
 import { SnackData } from '../../interfaces/SnackData';
+import { useCart } from '../../hooks/useCart';
 
 export interface SnacksProps {
     snacks: SnackData[];
 }
 
 export function Snacks(props: SnacksProps) {
+    const { cart, addSnackToCart } = useCart();
+
     return (
         <Container>
             {!props.snacks.length
@@ -16,11 +19,21 @@ export function Snacks(props: SnacksProps) {
                       return <SkeletonSnack key={n} />;
                   })
                 : props.snacks.map((snack) => {
+                      const snackExistent = cart.find(
+                          (item) =>
+                              item.snack === snack.snack && item.id === snack.id
+                      );
+
+                      console.log(cart);
+
                       return (
                           <div
                               key={snack.id}
                               className="snack"
                           >
+                              {snackExistent && (
+                                  <span>{snackExistent.quantity}</span>
+                              )}
                               <h2>{snack.name}</h2>
                               <img
                                   src={snack.image}
@@ -29,7 +42,10 @@ export function Snacks(props: SnacksProps) {
                               <p>{snack.description}</p>
                               <div>
                                   <strong>{coinFormat(snack.price)}</strong>
-                                  <button type="button">
+                                  <button
+                                      type="button"
+                                      onClick={() => addSnackToCart(snack)}
+                                  >
                                       <FiPlus />
                                   </button>
                               </div>

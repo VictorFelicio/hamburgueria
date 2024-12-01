@@ -34,6 +34,30 @@ export function CartProvider({ children }: CartProviderProps) {
     const [cart, setCart] = useState<Snack[]>([]);
 
     function addSnackToCart(snack: SnackData): void {
+        const hasSnackInCart = cart.find(
+            (item) => item.snack === snack.snack && item.id === snack.id
+        );
+
+        if (hasSnackInCart) {
+            const newCart = cart.map((item) => {
+                if (item.snack === snack.snack && item.id === snack.id) {
+                    const newQuantity = item.quantity + 1;
+                    const newSubtotal = item.price * newQuantity;
+
+                    return {
+                        ...item,
+                        quantity: newQuantity,
+                        subtotal: newSubtotal,
+                    };
+                }
+                return item;
+            });
+
+            setCart(newCart);
+
+            return;
+        }
+
         const newSnack = { ...snack, quantity: 1, subtotal: snack.price };
         const newCart = [...cart, newSnack];
         setCart(newCart);
