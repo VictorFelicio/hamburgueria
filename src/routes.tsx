@@ -4,16 +4,36 @@ import { Burgers } from './pages/Main/Burgers';
 import { Pizzas } from './pages/Main/Pizzas';
 import { Candys } from './pages/Main/Candys';
 import { Sodas } from './pages/Main/Sodas';
+import { MyCart } from './pages/Main/MyCart';
 
 export function AppRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<MainPage />}>
-                <Route path="/" element={<Burgers />} />
-                <Route path="pizzas" element={<Pizzas />} />
-                <Route path="drinks" element={<Sodas />} />
-                <Route path="candys" element={<Candys />} />
+            <Route
+                path="/"
+                element={<MainPage />}
+            >
+                <Route
+                    path="/"
+                    element={<Burgers />}
+                />
+                <Route
+                    path="pizzas"
+                    element={<Pizzas />}
+                />
+                <Route
+                    path="drinks"
+                    element={<Sodas />}
+                />
+                <Route
+                    path="candys"
+                    element={<Candys />}
+                />
             </Route>
+            <Route
+                path="cart"
+                element={<MyCart />}
+            />
         </Routes>
     );
 }
