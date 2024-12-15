@@ -1,15 +1,15 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
-import { SnackData } from '../interfaces/SnackData';
+import { SnackBase } from '../interfaces/SnackBase';
 
 import { getBurgers, getDrinks, getCandys, getPizzas } from '../services/api';
 import { menu } from '../data/menu';
 
 interface SnackContextProps {
-    burgers: SnackData[];
-    pizzas: SnackData[];
-    drinks: SnackData[];
-    candys: SnackData[];
+    burgers: SnackBase[];
+    pizzas: SnackBase[];
+    drinks: SnackBase[];
+    candys: SnackBase[];
 }
 
 interface SnackProviderProps {
@@ -19,10 +19,10 @@ interface SnackProviderProps {
 export const SnackContext = createContext({} as SnackContextProps);
 
 export function SnackProvider({ children }: SnackProviderProps) {
-    const [burgers, setBurgers] = useState<SnackData[]>([]);
-    const [pizzas, setPizzas] = useState<SnackData[]>([]);
-    const [drinks, setDrinks] = useState<SnackData[]>([]);
-    const [candys, setCandys] = useState<SnackData[]>([]);
+    const [burgers, setBurgers] = useState<SnackBase[]>([]);
+    const [pizzas, setPizzas] = useState<SnackBase[]>([]);
+    const [drinks, setDrinks] = useState<SnackBase[]>([]);
+    const [candys, setCandys] = useState<SnackBase[]>([]);
 
     useEffect(() => {
         const mockData = import.meta.env.VITE_MOCK_DATA;

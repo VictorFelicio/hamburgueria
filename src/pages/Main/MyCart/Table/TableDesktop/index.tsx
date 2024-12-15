@@ -3,9 +3,11 @@ import { coinFormat } from '../../../../../utils/coinFormat';
 import { Container } from './styles';
 import PlusImg from './../../../../../assets/circle-plus.svg';
 import MinusImg from './../../../../../assets/circle-minus.svg';
+import { FaTrashAlt } from 'react-icons/fa';
 
 export function TableDesktop() {
-    const { cart } = useCart();
+    const { cart, removeSnackFromCart, snackCartDecrement, snackCartIncrement } =
+        useCart();
     return (
         <Container>
             <table>
@@ -20,7 +22,7 @@ export function TableDesktop() {
                 </thead>
                 <tbody>
                     {cart.map((item) => (
-                        <tr key={`${item.snack} ${item.id}`}>
+                        <tr key={`${item.type} ${item.id}`}>
                             <td>
                                 <img
                                     src={item.image}
@@ -33,13 +35,17 @@ export function TableDesktop() {
                             </td>
                             <td>
                                 <div>
-                                    <button type="button">
+                                    <button
+                                        type="button"
+                                        onClick={() => snackCartDecrement(item)}
+                                    >
                                         <MinusImg />
                                     </button>
-                                    <span>
-                                        {`${item.quantity}`.padStart(2, '0')}
-                                    </span>
-                                    <button type="button">
+                                    <span>{`${item.quantity}`.padStart(2, '0')}</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => snackCartIncrement(item)}
+                                    >
                                         <PlusImg />
                                     </button>
                                 </div>
@@ -47,7 +53,14 @@ export function TableDesktop() {
                             <td>
                                 <h5>{coinFormat(item.subtotal)}</h5>
                             </td>
-                            <td>Deletar</td>
+                            <td>
+                                <button
+                                    type="button"
+                                    onClick={() => removeSnackFromCart(item)}
+                                >
+                                    <FaTrashAlt />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

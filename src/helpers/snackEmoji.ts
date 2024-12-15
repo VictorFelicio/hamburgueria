@@ -1,14 +1,14 @@
-import { SnackData } from '../interfaces/SnackData';
+import { SnackBase } from '../interfaces/SnackBase';
 
-export function snackEmoji(snack: SnackData) {
-    switch (snack.snack.toLowerCase()) {
+export function snackEmoji(snack: SnackBase) {
+    switch (snack.type.toLowerCase()) {
         case 'burger':
             return '🍔';
         case 'pizza':
             return '🍕';
         case 'drink':
             return '🥤';
-        case 'ice-cream':
+        case 'candy':
             return '🍧';
 
         default:

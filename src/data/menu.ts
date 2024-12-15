@@ -1,8 +1,17 @@
-export const menu = {
+import { SnackBase } from '../interfaces/SnackBase';
+
+interface Menu {
+    burgers: SnackBase[];
+    pizzas: SnackBase[];
+    drinks: SnackBase[];
+    candys: SnackBase[];
+}
+
+export const menu: Menu = {
     burgers: [
         {
             id: 1,
-            snack: 'burger',
+            type: 'burger',
             name: 'Mega',
             description:
                 'O artesanal tamanho família recheado com três carnes suculentas, queijo e bacon.',
@@ -11,7 +20,7 @@ export const menu = {
         },
         {
             id: 2,
-            snack: 'burger',
+            type: 'burger',
             name: 'Extra Bacon',
             description:
                 'Criado para os amantes de bacon, possui em todas as suas camadas bacon bem assado e ainda queijo e carne.',
@@ -20,7 +29,7 @@ export const menu = {
         },
         {
             id: 3,
-            snack: 'burger',
+            type: 'burger',
             name: 'Tradicional',
             description:
                 'O simples também é delicioso, principalmente se envolver nossa carne artesanal e queijo.',
@@ -29,7 +38,7 @@ export const menu = {
         },
         {
             id: 4,
-            snack: 'burger',
+            type: 'burger',
             name: 'Big Carne',
             description:
                 'Uma carne artesanal de primeira qualidade com 4cm de altura e uma salada completa com alface, cebola, tomate e outros.',
@@ -38,7 +47,7 @@ export const menu = {
         },
         {
             id: 5,
-            snack: 'burger',
+            type: 'burger',
             name: 'Carne dupla',
             description:
                 'Já pensou em comer aquele sanduíche com carne dupla e saborosa, recheada com queijo, molho e salada? Então você pensou exatamente nesse hambúrguer.',
@@ -50,7 +59,7 @@ export const menu = {
     pizzas: [
         {
             id: 1,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Calabresa',
             description:
                 'Pizza recheada com calabresa, cebola, mussarela, orégano e azeitona, tendo uma borda recheada com catupiry.',
@@ -59,7 +68,7 @@ export const menu = {
         },
         {
             id: 2,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Portuguesa',
             description:
                 'Pizza recheada com presunto, mussarela, ovo, cebola, azeitona, orégano, tomate e molho de tomate, tendo uma borda recheada com catupiry.',
@@ -68,7 +77,7 @@ export const menu = {
         },
         {
             id: 3,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Frango com Catupiry',
             description:
                 'Pizza recheada com frango, catupiry e brócolis, tendo uma borda recheada com catupiry.',
@@ -77,7 +86,7 @@ export const menu = {
         },
         {
             id: 4,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Napolitana',
             description:
                 'Pizza recheada com queijo, mussarela, tomate e couve, tendo uma borda recheada com catupiry.',
@@ -86,7 +95,7 @@ export const menu = {
         },
         {
             id: 5,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Mussarela',
             description:
                 'Pizza recheada com mussarela, tendo uma borda recheada com catupiry.',
@@ -95,7 +104,7 @@ export const menu = {
         },
         {
             id: 6,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Marguerita',
             description:
                 'Pizza recheada com calabresa, mussarela, cebola, azeitona e orégano, tendo uma borda recheada com catupiry.',
@@ -104,7 +113,7 @@ export const menu = {
         },
         {
             id: 7,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Brigadeiro com Morango',
             description: 'Pizza doce recheada com brigadeiro e morango.',
             price: 35.0,
@@ -112,7 +121,7 @@ export const menu = {
         },
         {
             id: 8,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Banana',
             description: 'Pizza doce recheada com banana e leite condensado.',
             price: 33.5,
@@ -120,7 +129,7 @@ export const menu = {
         },
         {
             id: 9,
-            snack: 'pizza',
+            type: 'pizza',
             name: 'Chocolate',
             description:
                 'Pizza doce recheada com chocolate e bolinhas de chocolate.',
@@ -132,16 +141,15 @@ export const menu = {
     drinks: [
         {
             id: 1,
-            snack: 'drink',
+            type: 'drink',
             name: 'Coca-Cola 2L',
-            description:
-                'A tradicional Coca-Cola que a família brasileira adora.',
+            description: 'A tradicional Coca-Cola que a família brasileira adora.',
             price: 12,
             image: 'https://i.imgur.com/Lg3aKhf.jpg',
         },
         {
             id: 2,
-            snack: 'drink',
+            type: 'drink',
             name: 'Guaraná Antarctica',
             description:
                 'O irresistível e saboroso Guaraná Antarctica em sua versão de latinha.',
@@ -150,7 +158,7 @@ export const menu = {
         },
         {
             id: 3,
-            snack: 'drink',
+            type: 'drink',
             name: 'Suco de Abacaxi',
             description:
                 'Suco natural de abacaxi com leves incrementos de algumas hortaliças para fortificar sua saúde.',
@@ -159,7 +167,7 @@ export const menu = {
         },
         {
             id: 4,
-            snack: 'drink',
+            type: 'drink',
             name: 'Suco de Laranja',
             description:
                 'Suco natural de laranja para você que é amante dessa fruta.',
@@ -171,16 +179,15 @@ export const menu = {
     candys: [
         {
             id: 1,
-            snack: 'ice-cream',
+            type: 'candy',
             name: 'Casquinha',
-            description:
-                'A casquinha crocante e saborosa que nossos clientes amam.',
+            description: 'A casquinha crocante e saborosa que nossos clientes amam.',
             price: 4.5,
             image: 'https://i.imgur.com/YGmeoCm.jpg',
         },
         {
             id: 2,
-            snack: 'ice-cream',
+            type: 'candy',
             name: 'Chocolate com granulado',
             description:
                 'Sorvete de chocolate com granulados em chocolate para você se deliciar.',
@@ -189,7 +196,7 @@ export const menu = {
         },
         {
             id: 3,
-            snack: 'ice-cream',
+            type: 'candy',
             name: 'Flocos',
             description:
                 'O tradicional flocos vem com cobertura em chocolate para adocicar nossos dia.',
@@ -198,19 +205,17 @@ export const menu = {
         },
         {
             id: 4,
-            snack: 'ice-cream',
+            type: 'candy',
             name: 'Creme',
-            description:
-                'O simples sorvete de creme com um gosto irresistível.',
+            description: 'O simples sorvete de creme com um gosto irresistível.',
             price: 6.5,
             image: 'https://i.imgur.com/dFLysrT.jpg',
         },
         {
             id: 5,
-            snack: 'ice-cream',
+            type: 'candy',
             name: 'Morango',
-            description:
-                'O clássico sorvete de morango que deixe tudo mais leve.',
+            description: 'O clássico sorvete de morango que deixe tudo mais leve.',
             price: 10,
             image: 'https://i.imgur.com/0TWnEI7.jpg',
         },

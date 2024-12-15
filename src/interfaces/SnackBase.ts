@@ -1,6 +1,6 @@
-export interface SnackData {
+export interface SnackBase {
     id: number;
-    snack: string;
+    type: 'burger' | 'pizza' | 'drink' | 'candy';
     name: string;
     description: string;
     image: string;

@@ -2,11 +2,11 @@ import { FiPlus } from 'react-icons/fi';
 import { Container } from './style';
 import { coinFormat } from '../../utils/coinFormat';
 import { SkeletonSnack } from './SkeletonSnack';
-import { SnackData } from '../../interfaces/SnackData';
+import { SnackBase } from '../../interfaces/SnackBase';
 import { useCart } from '../../hooks/useCart';
 
 export interface SnacksProps {
-    snacks: SnackData[];
+    snacks: SnackBase[];
 }
 
 export function Snacks(props: SnacksProps) {
@@ -20,8 +20,7 @@ export function Snacks(props: SnacksProps) {
                   })
                 : props.snacks.map((snack) => {
                       const snackExistent = cart.find(
-                          (item) =>
-                              item.snack === snack.snack && item.id === snack.id
+                          (item) => item.type === snack.type && item.id === snack.id
                       );
 
                       console.log(cart);
