@@ -41,6 +41,22 @@ export const Container = styled.main`
 
             /* quantidade */
 
+            div {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    background: none;
+                    border: none;
+                    flex: 0;
+                }
+            }
+
             h5 {
                 font-weight: 700;
                 font-size: 1.5rem;

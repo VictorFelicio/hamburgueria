@@ -1,6 +1,8 @@
 import { useCart } from '../../../../../hooks/useCart';
 import { coinFormat } from '../../../../../utils/coinFormat';
 import { Container } from './styles';
+import PlusImg from './../../../../../assets/circle-plus.svg';
+import MinusImg from './../../../../../assets/circle-minus.svg';
 
 export function TableDesktop() {
     const { cart } = useCart();
@@ -10,7 +12,7 @@ export function TableDesktop() {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Lanches</th>
+                        <th>Lanche</th>
                         <th>Qtd</th>
                         <th>Subtotal</th>
                         <th></th>
@@ -29,7 +31,19 @@ export function TableDesktop() {
                                 <h4>{item.name}</h4>
                                 <span>{coinFormat(item.price)}</span>
                             </td>
-                            <td>{item.quantity}</td>
+                            <td>
+                                <div>
+                                    <button type="button">
+                                        <MinusImg />
+                                    </button>
+                                    <span>
+                                        {`${item.quantity}`.padStart(2, '0')}
+                                    </span>
+                                    <button type="button">
+                                        <PlusImg />
+                                    </button>
+                                </div>
+                            </td>
                             <td>
                                 <h5>{coinFormat(item.subtotal)}</h5>
                             </td>
