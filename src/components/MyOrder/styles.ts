@@ -33,4 +33,13 @@ export const Container = styled(Link)`
         font-size: 1.2rem;
         color: ${(props) => props.theme.colors.yellow};
     }
+
+    @media (max-width: 720px) {
+        top: 0.5rem;
+        bottom: initial;
+
+        span:first-child {
+            display: none;
+        }
+    }
 `;
