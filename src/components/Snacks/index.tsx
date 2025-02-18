@@ -30,9 +30,7 @@ export function Snacks(props: SnacksProps) {
                               key={snack.id}
                               className="snack"
                           >
-                              {snackExistent && (
-                                  <span>{snackExistent.quantity}</span>
-                              )}
+                              {snackExistent && <span>{snackExistent.quantity}</span>}
                               <h2>{snack.name}</h2>
                               <img
                                   src={snack.image}
