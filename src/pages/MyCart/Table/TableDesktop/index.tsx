@@ -1,8 +1,8 @@
 import { useCart } from '../../../../hooks/useCart';
 import { coinFormat } from '../../../../utils/coinFormat';
 import { Container } from './styles';
-import PlusImg from './../../../../../assets/circle-plus.svg';
-import MinusImg from './../../../../../assets/circle-minus.svg';
+import PlusImg from '../../../../assets/circle-plus.svg';
+import MinusImg from '../../../../assets/circle-minus.svg';
 import { FaTrashAlt } from 'react-icons/fa';
 import { ConfirmOrder } from '../../../../components/ConfirmOrder';
 
