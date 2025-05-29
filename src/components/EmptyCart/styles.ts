@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -21,11 +22,21 @@ export const Container = styled.section`
 `;
 
 export const Button = styled(Link)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors['red']};
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    background-color: ${({ theme }) => theme.colors.red};
+    max-width: 13rem;
+    height: 3rem;
+
+    border-radius: 8px;
+    margin: 1rem 0 3rem;
+    padding: 0 1.5rem;
+
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 3rem;
+
+    transition: background 0.3s;
+
+    &:hover {
+        background: ${darken(0.1, '#AA2424')};
+    }
 `;
