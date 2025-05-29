@@ -1,5 +1,5 @@
-import { EmptyCart } from '../../../../components/EmptyCart';
-import { useCart } from '../../../../hooks/useCart';
+import { EmptyCart } from '../../../components/EmptyCart';
+import { useCart } from '../../../hooks/useCart';
 import { TableDesktop } from './TableDesktop';
 
 export function Table() {

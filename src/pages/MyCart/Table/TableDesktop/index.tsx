@@ -1,14 +1,13 @@
-import { useCart } from '../../../../../hooks/useCart';
-import { coinFormat } from '../../../../../utils/coinFormat';
+import { useCart } from '../../../../hooks/useCart';
+import { coinFormat } from '../../../../utils/coinFormat';
 import { Container } from './styles';
 import PlusImg from './../../../../../assets/circle-plus.svg';
 import MinusImg from './../../../../../assets/circle-minus.svg';
 import { FaTrashAlt } from 'react-icons/fa';
-import { ConfirmOrder } from '../../../../../components/ConfirmOrder';
+import { ConfirmOrder } from '../../../../components/ConfirmOrder';
 
 export function TableDesktop() {
-    const { cart, removeSnackFromCart, snackCartDecrement, snackCartIncrement } =
-        useCart();
+    const { cart, removeSnackFromCart, snackCartDecrement, snackCartIncrement } = useCart();
     return (
         <Container>
             <table>

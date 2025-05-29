@@ -4,7 +4,7 @@ import { Burgers } from './pages/Main/Burgers';
 import { Pizzas } from './pages/Main/Pizzas';
 import { Candys } from './pages/Main/Candys';
 import { Sodas } from './pages/Main/Sodas';
-import { MyCart } from './pages/Main/MyCart';
+import { MyCart } from './pages/MyCart';
 
 export function AppRoutes() {
     return (
