@@ -20,4 +20,12 @@ export const Container = styled.section`
     }
 `;
 
-export const Button = styled(Link)``;
+export const Button = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors['red']};
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+`;

@@ -8,7 +8,7 @@ export function EmptyCart({ title }: EmptyCartProps) {
     return (
         <Container>
             <h2>{title}</h2>
-            <Button to="/">CHecar o cardápio</Button>
+            <Button to="/">Checar o cardápio</Button>
             <ManAndBurger />
         </Container>
     );
