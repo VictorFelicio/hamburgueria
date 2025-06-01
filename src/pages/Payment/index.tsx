@@ -2,46 +2,79 @@ import { Head } from '../../components/Head';
 import { PayOrder } from '../../components/OrderCloseAction/PayOrder';
 import { OrderHeader } from '../../components/OrderHeader';
 import { Container, Form, Inner } from './styles';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { IMaskInput } from 'react-imask';
+import { PaymentFormData, paymentFormSchema } from './validationPaymentSchema';
 
 export function Payment() {
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<PaymentFormData>({ resolver: yupResolver(paymentFormSchema) });
+
+    const onSubmit: SubmitHandler<PaymentFormData> = (data) => {
+        console.log(data);
+    };
+
     return (
         <Container>
             <Head title="Pagamento" />
             <OrderHeader />
             <Inner>
-                <Form>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <h4>Informações Pessoais</h4>
                     <div className="field">
                         <label htmlFor="fullName">Nome e Sobrenome</label>
-                        <input
-                            type="text"
-                            id="fullName"
+                        <Controller
                             name="fullName"
-                            autoComplete="name"
-                            placeholder="Digite seu nome completo"
+                            control={control}
+                            render={({ field }) => (
+                                <input
+                                    {...field}
+                                    type="text"
+                                    id="fullName"
+                                    autoComplete="name"
+                                />
+                            )}
                         />
+                        {errors.fullName && <p className="error">{errors.fullName.message}</p>}
                     </div>
                     <div className="grouped">
                         <div className="field">
                             <label htmlFor="email">E-mail</label>
-                            <input
-                                type="email"
-                                id="email"
+                            <Controller
                                 name="email"
-                                autoComplete="email"
-                                placeholder="Digite seu e-mail"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        {...field}
+                                        type="email"
+                                        id="email"
+                                        autoComplete="email"
+                                    />
+                                )}
                             />
+                            {errors.email && <p className="error">{errors.email.message}</p>}
                         </div>
 
                         <div className="field">
                             <label htmlFor="phone">Telefone</label>
-                            <input
-                                type="tel"
-                                id="phone"
+                            <Controller
                                 name="phone"
-                                autoComplete="phone"
-                                placeholder="Digite seu telefone"
+                                control={control}
+                                render={({ field }) => (
+                                    <IMaskInput
+                                        type="tel"
+                                        id="phone"
+                                        autoComplete="tel"
+                                        mask="+(55) (00) 00000-0000"
+                                        {...field}
+                                    />
+                                )}
                             />
+                            {errors.phone && <p className="error">{errors.phone.message}</p>}
                         </div>
 
                         <div className="field">
@@ -52,105 +85,170 @@ export function Payment() {
                                 name="document"
                             />
                         </div>
+                        <Controller
+                            name="document"
+                            control={control}
+                            render={({ field }) => (
+                                <IMaskInput
+                                    type="text"
+                                    id="document"
+                                    mask={[{ mask: '000.000.000-00', maxLength: 11 }, { mask: '00.000.000/000-00' }]}
+                                    {...field}
+                                />
+                            )}
+                        />
+                        {errors.document && <p className="error">{errors.document.message}</p>}
                     </div>
 
                     <h4>Endereço de entrega</h4>
 
                     <div className="field">
                         <label htmlFor="zipcode">CEP</label>
-                        <input
-                            type="text"
-                            id="zipcode"
-                            name="zipcode"
-                            autoComplete="postal-code"
-                            style={{ width: '120px' }}
+
+                        <Controller
+                            name="zipCode"
+                            control={control}
+                            render={({ field }) => (
+                                <IMaskInput
+                                    type="text"
+                                    id="zipCode"
+                                    mask={'00000-000'}
+                                    autoComplete="postal-code"
+                                    style={{ width: '120px' }}
+                                    {...field}
+                                />
+                            )}
                         />
+                        {errors.zipCode && <p className="error">{errors.zipCode.message}</p>}
                     </div>
 
                     <div className="field">
                         <label htmlFor="street">Endereço</label>
-                        <input
-                            type="text"
-                            id="stret"
-                            name="stret"
-                            autoComplete="street-address"
+                        <Controller
+                            name="street"
+                            control={control}
+                            render={({ field }) => (
+                                <input
+                                    type="text"
+                                    id="street"
+                                    autoComplete="street-address"
+                                    {...field}
+                                />
+                            )}
                         />
+                        {errors.street && <p className="error">{errors.street.message}</p>}
                     </div>
 
                     <div className="grouped">
                         <div className="field">
                             <label htmlFor="number">Número</label>
-                            <input
-                                type="text"
-                                id="number"
+                            <Controller
                                 name="number"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        type="text"
+                                        id="number"
+                                        autoComplete="number-address"
+                                        {...field}
+                                    />
+                                )}
                             />
+                            {errors.number && <p className="error">{errors.number.message}</p>}
                         </div>
 
                         <div className="field">
                             <label htmlFor="complement">Complemento</label>
-                            <input
-                                type="text"
-                                id="complement"
+                            <Controller
                                 name="complement"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        type="text"
+                                        id="complement"
+                                        {...field}
+                                    />
+                                )}
                             />
+                            {errors.complement && <p className="error">{errors.complement.message}</p>}
                         </div>
                     </div>
 
                     <div className="grouped">
                         <div className="field">
                             <label htmlFor="neighborhood">Bairro</label>
-                            <input
-                                type="text"
-                                id="neighborhood"
+                            <Controller
                                 name="neighborhood"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        type="text"
+                                        id="neighborhood"
+                                        {...field}
+                                    />
+                                )}
                             />
+                            {errors.neighborhood && <p className="error">{errors.neighborhood.message}</p>}
                         </div>
 
                         <div className="field">
                             <label htmlFor="city">Cidade</label>
-                            <input
-                                type="text"
-                                id="city"
+                            <Controller
                                 name="city"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        {...field}
+                                    />
+                                )}
                             />
+                            {errors.city && <p className="error">{errors.city.message}</p>}
                         </div>
 
                         <div className="field">
                             <label htmlFor="state">Estado</label>
-                            <select
-                                id="state"
+                            <Controller
                                 name="state"
-                            >
-                                <option value="">Selecione o estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
+                                control={control}
+                                render={({ field }) => (
+                                    <select
+                                        id="state"
+                                        {...field}
+                                    >
+                                        <option value="">Selecione o estado</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                )}
+                            />
+                            {errors.state && <p className="error">{errors.state.message}</p>}
                         </div>
                     </div>
 
@@ -197,8 +295,8 @@ export function Payment() {
                             />
                         </div>
                     </div>
+                    <PayOrder />
                 </Form>
-                <PayOrder />
             </Inner>
         </Container>
     );

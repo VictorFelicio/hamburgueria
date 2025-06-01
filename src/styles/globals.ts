@@ -43,4 +43,20 @@ export const GlobalStyles = createGlobalStyle`
   li {
     list-style: none;
   }
+
+  input,
+  textarea,
+  select {
+    background-color: ${({ theme }) => theme.colors.gray800};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px ${({ theme }) => theme.colors.gray800} inset !important;
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.white}  !important;
+    border: 0px solid ${({ theme }) => theme.colors.gray600} !important; /* <-- AQUI */
+    transition: background-color 5000s ease-in-out 0s  !important;
+  }
 `;
