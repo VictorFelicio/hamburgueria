@@ -17,6 +17,7 @@ interface CartContextProps {
     removeSnackFromCart: (snack: CartSnack) => void;
     snackCartIncrement: (snack: CartSnack) => void;
     snackCartDecrement: (snack: CartSnack) => void;
+    totalCartItens: number;
 }
 
 export const CartContext = createContext({} as CartContextProps);
@@ -24,10 +25,10 @@ export const CartContext = createContext({} as CartContextProps);
 export function CartProvider({ children }: CartProviderProps) {
     const [cart, setCart] = useState<CartSnack[]>([]);
 
+    const totalCartItens = cart.reduce((acc, item) => acc + item.quantity, 0);
+
     function addSnackToCart(snack: SnackBase): void {
-        const hasSnackInCart = cart.find(
-            (item) => item.type === snack.type && item.id === snack.id
-        );
+        const hasSnackInCart = cart.find((item) => item.type === snack.type && item.id === snack.id);
 
         if (hasSnackInCart) {
             const newCart = cart.map((item) =>
@@ -41,9 +42,7 @@ export function CartProvider({ children }: CartProviderProps) {
             );
 
             setCart(newCart);
-            toast.success(
-                `${snackEmoji(snack)} Outro(a) ${snack.name} adicionado aos pedidos!`
-            );
+            toast.success(`${snackEmoji(snack)} Outro(a) ${snack.name} adicionado aos pedidos!`);
         } else {
             const newSnack = { ...snack, quantity: 1, subtotal: snack.price };
             const newCart = [...cart, newSnack];
@@ -53,10 +52,7 @@ export function CartProvider({ children }: CartProviderProps) {
     }
 
     function removeSnackFromCart(snack: CartSnack) {
-        const newCart = cart.filter(
-            (snackInCart) =>
-                !(snackInCart.type === snack.type && snackInCart.id === snack.id)
-        );
+        const newCart = cart.filter((snackInCart) => !(snackInCart.type === snack.type && snackInCart.id === snack.id));
         setCart(newCart);
     }
 
@@ -70,17 +66,12 @@ export function CartProvider({ children }: CartProviderProps) {
     function updateSnackQuantity(snack: CartSnack, newQuantity: number) {
         if (newQuantity <= 0) return;
 
-        const snackExistentInCart = cart.find(
-            (item) => item.type === snack.type && item.id === snack.id
-        );
+        const snackExistentInCart = cart.find((item) => item.type === snack.type && item.id === snack.id);
 
         if (!snackExistentInCart) return;
 
         const newCart = cart.map((item) => {
-            if (
-                item.type === snackExistentInCart.type &&
-                item.id === snackExistentInCart.id
-            ) {
+            if (item.type === snackExistentInCart.type && item.id === snackExistentInCart.id) {
                 return {
                     ...item,
                     quantity: newQuantity,
@@ -98,6 +89,7 @@ export function CartProvider({ children }: CartProviderProps) {
         <CartContext.Provider
             value={{
                 cart,
+                totalCartItens,
                 addSnackToCart,
                 removeSnackFromCart,
                 snackCartIncrement,
