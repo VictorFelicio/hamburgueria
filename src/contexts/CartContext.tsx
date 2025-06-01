@@ -2,6 +2,7 @@ import { createContext, ReactNode, useState } from 'react';
 import { SnackBase } from '../interfaces/SnackBase';
 import { toast } from 'react-toastify';
 import { snackEmoji } from '../helpers/snackEmoji';
+import { useNavigate } from 'react-router-dom';
 
 interface CartSnack extends SnackBase {
     quantity: number;
@@ -13,17 +14,20 @@ interface CartProviderProps {
 }
 interface CartContextProps {
     cart: CartSnack[];
+    totalCartItens: number;
     addSnackToCart: (snack: SnackBase) => void;
     removeSnackFromCart: (snack: CartSnack) => void;
     snackCartIncrement: (snack: CartSnack) => void;
     snackCartDecrement: (snack: CartSnack) => void;
-    totalCartItens: number;
+    confirmOrder: () => void;
+    payOrder: () => void;
 }
 
 export const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
     const [cart, setCart] = useState<CartSnack[]>([]);
+    const navigate = useNavigate();
 
     const totalCartItens = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -85,6 +89,14 @@ export function CartProvider({ children }: CartProviderProps) {
         setCart(newCart);
     }
 
+    function confirmOrder() {
+        navigate('/payment');
+    }
+
+    function payOrder() {
+        return;
+    }
+
     return (
         <CartContext.Provider
             value={{
@@ -94,6 +106,8 @@ export function CartProvider({ children }: CartProviderProps) {
                 removeSnackFromCart,
                 snackCartIncrement,
                 snackCartDecrement,
+                confirmOrder,
+                payOrder,
             }}
         >
             {children}
