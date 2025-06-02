@@ -6,6 +6,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMaskInput } from 'react-imask';
 import { PaymentFormData, paymentFormSchema } from './validationPaymentSchema';
+import PersonalInfo from './components/PersonalInfo';
 
 export function Payment() {
     const {
@@ -24,81 +25,10 @@ export function Payment() {
             <OrderHeader />
             <Inner>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <h4>Informações Pessoais</h4>
-                    <div className="field">
-                        <label htmlFor="fullName">Nome e Sobrenome</label>
-                        <Controller
-                            name="fullName"
-                            control={control}
-                            render={({ field }) => (
-                                <input
-                                    {...field}
-                                    type="text"
-                                    id="fullName"
-                                    autoComplete="name"
-                                />
-                            )}
-                        />
-                        {errors.fullName && <p className="error">{errors.fullName.message}</p>}
-                    </div>
-                    <div className="grouped">
-                        <div className="field">
-                            <label htmlFor="email">E-mail</label>
-                            <Controller
-                                name="email"
-                                control={control}
-                                render={({ field }) => (
-                                    <input
-                                        {...field}
-                                        type="email"
-                                        id="email"
-                                        autoComplete="email"
-                                    />
-                                )}
-                            />
-                            {errors.email && <p className="error">{errors.email.message}</p>}
-                        </div>
-
-                        <div className="field">
-                            <label htmlFor="phone">Telefone</label>
-                            <Controller
-                                name="phone"
-                                control={control}
-                                render={({ field }) => (
-                                    <IMaskInput
-                                        type="tel"
-                                        id="phone"
-                                        autoComplete="tel"
-                                        mask="+(55) (00) 00000-0000"
-                                        {...field}
-                                    />
-                                )}
-                            />
-                            {errors.phone && <p className="error">{errors.phone.message}</p>}
-                        </div>
-
-                        <div className="field">
-                            <label htmlFor="document"> CPF / CNPJ</label>
-                            <input
-                                type="text"
-                                id="document"
-                                name="document"
-                            />
-                        </div>
-                        <Controller
-                            name="document"
-                            control={control}
-                            render={({ field }) => (
-                                <IMaskInput
-                                    type="text"
-                                    id="document"
-                                    mask={[{ mask: '000.000.000-00', maxLength: 11 }, { mask: '00.000.000/000-00' }]}
-                                    {...field}
-                                />
-                            )}
-                        />
-                        {errors.document && <p className="error">{errors.document.message}</p>}
-                    </div>
+                    <PersonalInfo
+                        errors={errors}
+                        control={control}
+                    />
 
                     <h4>Endereço de entrega</h4>
 
