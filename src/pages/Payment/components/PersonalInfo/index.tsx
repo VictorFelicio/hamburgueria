@@ -55,7 +55,7 @@ export default function PersonalInfo(props: PersonalInfoProps) {
                                 type="tel"
                                 id="phone"
                                 autoComplete="tel"
-                                mask="+(55) (00) 00000-0000"
+                                mask="(00) 00000-0000"
                                 {...field}
                             />
                         )}
@@ -65,20 +65,20 @@ export default function PersonalInfo(props: PersonalInfoProps) {
 
                 <div className="field">
                     <label htmlFor="document"> CPF / CNPJ</label>
+                    <Controller
+                        name="document"
+                        control={props.control}
+                        render={({ field }) => (
+                            <IMaskInput
+                                type="text"
+                                id="document"
+                                mask={[{ mask: '000.000.000-00', maxLength: 11 }, { mask: '00.000.000/000-00' }]}
+                                {...field}
+                            />
+                        )}
+                    />
+                    {props.errors.document && <p className="error">{props.errors.document.message}</p>}
                 </div>
-                <Controller
-                    name="document"
-                    control={props.control}
-                    render={({ field }) => (
-                        <IMaskInput
-                            type="text"
-                            id="document"
-                            mask={[{ mask: '000.000.000-00', maxLength: 11 }, { mask: '00.000.000/000-00' }]}
-                            {...field}
-                        />
-                    )}
-                />
-                {props.errors.document && <p className="error">{props.errors.document.message}</p>}
             </div>
         </>
     );
