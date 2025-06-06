@@ -1,10 +1,10 @@
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { IMaskInput } from 'react-imask';
-import { PaymentFormData } from '../../validationPaymentSchema';
+import { IFormPayment } from '../../interface/IFormPayment';
 
 interface PersonalInfoProps {
-    control: Control<PaymentFormData>;
-    errors: FieldErrors<PaymentFormData>;
+    control: Control<IFormPayment>;
+    errors: FieldErrors<IFormPayment>;
 }
 
 export default function PersonalInfo(props: PersonalInfoProps) {

@@ -1,22 +1,23 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Head } from '../../components/Head';
 import { PayOrder } from '../../components/OrderCloseAction/PayOrder';
 import { OrderHeader } from '../../components/OrderHeader';
-import { Container, Form, Inner } from './styles';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { PaymentFormData, paymentFormSchema } from './validationPaymentSchema';
-import PersonalInfo from './components/PersonalInfo';
 import Address from './components/Address';
 import { CreditCard } from './components/CreditCard';
+import PersonalInfo from './components/PersonalInfo';
+import { Container, Form, Inner } from './styles';
+import { paymentFormSchema } from './validationPaymentSchema';
+import { IFormPayment } from './interface/IFormPayment';
 
 export function Payment() {
     const {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm<PaymentFormData>({ resolver: yupResolver(paymentFormSchema) });
+    } = useForm<IFormPayment>({ resolver: yupResolver(paymentFormSchema) });
 
-    const onSubmit: SubmitHandler<PaymentFormData> = (data) => {
+    const onSubmit: SubmitHandler<IFormPayment> = (data) => {
         console.log(data);
     };
 

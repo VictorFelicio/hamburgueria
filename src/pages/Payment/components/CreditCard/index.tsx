@@ -1,10 +1,10 @@
 import { Control, Controller, FieldErrors } from 'react-hook-form';
-import { PaymentFormData } from '../../validationPaymentSchema';
 import { IMask, IMaskInput } from 'react-imask';
+import { IFormPayment } from '../../interface/IFormPayment';
 
 interface CreditCardProps {
-    control: Control<PaymentFormData>;
-    errors: FieldErrors<PaymentFormData>;
+    control: Control<IFormPayment>;
+    errors: FieldErrors<IFormPayment>;
 }
 
 export function CreditCard(props: CreditCardProps) {
