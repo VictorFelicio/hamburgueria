@@ -17,6 +17,12 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
 
+    .error {
+        color: ${({ theme }) => theme.colors.red};
+        font-size: 0.85rem;
+        letter-spacing: 0.025rem;
+    }
+
     h4 {
         margin: 2.5rem 0 2rem;
 

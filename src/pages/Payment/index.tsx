@@ -6,9 +6,9 @@ import { OrderHeader } from '../../components/OrderHeader';
 import Address from './components/Address';
 import { CreditCard } from './components/CreditCard';
 import PersonalInfo from './components/PersonalInfo';
+import { IFormPayment } from './interface/IFormPayment';
 import { Container, Form, Inner } from './styles';
 import { paymentFormSchema } from './validationPaymentSchema';
-import { IFormPayment } from './interface/IFormPayment';
 
 export function Payment() {
     const {
