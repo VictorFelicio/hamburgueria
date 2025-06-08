@@ -9,8 +9,11 @@ import PersonalInfo from './components/PersonalInfo';
 import { IFormPayment } from './interface/IFormPayment';
 import { Container, Form, Inner } from './styles';
 import { paymentFormSchema } from './validationPaymentSchema';
+import { useCart } from '../../hooks/useCart';
 
 export function Payment() {
+    const { payOrder } = useCart();
+
     const {
         control,
         handleSubmit,
@@ -18,7 +21,7 @@ export function Payment() {
     } = useForm<IFormPayment>({ resolver: yupResolver(paymentFormSchema) });
 
     const onSubmit: SubmitHandler<IFormPayment> = (data) => {
-        console.log(data);
+        payOrder(data);
     };
 
     return (

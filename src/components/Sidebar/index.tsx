@@ -13,7 +13,7 @@ export function Sidebar() {
         setMenuOpen(!menuOpen);
     };
     return (
-        <Container ismenuopen={menuOpen}>
+        <Container $ismenuopen={menuOpen}>
             <button
                 type="button"
                 onClick={handleToggleMenu}

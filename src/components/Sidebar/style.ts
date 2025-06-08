@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-    ismenuopen: boolean;
+    $ismenuopen: boolean;
 }
 
 export const Container = styled.aside<ContainerProps>`
     background-color: ${(props) => props.theme.colors.red};
-    ${({ ismenuopen }) =>
-        ismenuopen
+    ${({ $ismenuopen }) =>
+        $ismenuopen
             ? css`
                   width: 16.3rem;
               `
@@ -73,8 +73,7 @@ export const Container = styled.aside<ContainerProps>`
                         bottom: 0;
                         transform: translateY(-50%);
 
-                        background-color: ${(props) =>
-                            props.theme.colors.yellow};
+                        background-color: ${(props) => props.theme.colors.yellow};
 
                         width: 5px;
                         height: calc(100% + 10px);

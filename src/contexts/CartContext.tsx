@@ -3,6 +3,7 @@ import { SnackBase } from '../interfaces/SnackBase';
 import { toast } from 'react-toastify';
 import { snackEmoji } from '../helpers/snackEmoji';
 import { useNavigate } from 'react-router-dom';
+import { IFormPayment } from '../pages/Payment/interface/IFormPayment';
 
 interface CartSnack extends SnackBase {
     quantity: number;
@@ -20,7 +21,7 @@ interface CartContextProps {
     snackCartIncrement: (snack: CartSnack) => void;
     snackCartDecrement: (snack: CartSnack) => void;
     confirmOrder: () => void;
-    payOrder: () => void;
+    payOrder: (data: IFormPayment) => void;
 }
 
 export const CartContext = createContext({} as CartContextProps);
@@ -28,8 +29,14 @@ export const CartContext = createContext({} as CartContextProps);
 export function CartProvider({ children }: CartProviderProps) {
     const [cart, setCart] = useState<CartSnack[]>([]);
     const navigate = useNavigate();
+    const localStorageKey = '@hambugeria:cart';
 
     const totalCartItens = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    function saveCartOnLocalStorage(items: CartSnack[]) {
+        setCart(items);
+        localStorage.setItem(localStorageKey, JSON.stringify(items));
+    }
 
     function addSnackToCart(snack: SnackBase): void {
         const hasSnackInCart = cart.find((item) => item.type === snack.type && item.id === snack.id);
@@ -45,12 +52,12 @@ export function CartProvider({ children }: CartProviderProps) {
                     : item
             );
 
-            setCart(newCart);
+            saveCartOnLocalStorage(newCart);
             toast.success(`${snackEmoji(snack)} Outro(a) ${snack.name} adicionado aos pedidos!`);
         } else {
             const newSnack = { ...snack, quantity: 1, subtotal: snack.price };
             const newCart = [...cart, newSnack];
-            setCart(newCart);
+            saveCartOnLocalStorage(newCart);
             toast.success(` ${snackEmoji(snack)} ${snack.name} adicionado ao pedido!`);
         }
     }
@@ -86,15 +93,15 @@ export function CartProvider({ children }: CartProviderProps) {
             return item;
         });
 
-        setCart(newCart);
+        saveCartOnLocalStorage(newCart);
     }
 
     function confirmOrder() {
         navigate('/payment');
     }
 
-    function payOrder() {
-        return;
+    function payOrder(data: IFormPayment) {
+        console.log(data);
     }
 
     return (

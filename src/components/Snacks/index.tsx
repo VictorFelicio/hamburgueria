@@ -19,11 +19,7 @@ export function Snacks(props: SnacksProps) {
                       return <SkeletonSnack key={n} />;
                   })
                 : props.snacks.map((snack) => {
-                      const snackExistent = cart.find(
-                          (item) => item.type === snack.type && item.id === snack.id
-                      );
-
-                      console.log(cart);
+                      const snackExistent = cart.find((item) => item.type === snack.type && item.id === snack.id);
 
                       return (
                           <div
