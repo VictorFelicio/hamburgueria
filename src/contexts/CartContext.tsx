@@ -27,7 +27,11 @@ interface CartContextProps {
 export const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
-    const [cart, setCart] = useState<CartSnack[]>([]);
+    const [cart, setCart] = useState<CartSnack[]>(() => {
+        const storedCart = localStorage.getItem('@hambugeria:cart');
+        if (storedCart) return JSON.parse(storedCart);
+        return [];
+    });
     const navigate = useNavigate();
     const localStorageKey = '@hambugeria:cart';
 
@@ -36,6 +40,11 @@ export function CartProvider({ children }: CartProviderProps) {
     function saveCartOnLocalStorage(items: CartSnack[]) {
         setCart(items);
         localStorage.setItem(localStorageKey, JSON.stringify(items));
+    }
+
+    function clearCart() {
+        setCart([]);
+        localStorage.removeItem(localStorageKey);
     }
 
     function addSnackToCart(snack: SnackBase): void {
@@ -102,6 +111,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
     function payOrder(data: IFormPayment) {
         console.log(data);
+        clearCart();
     }
 
     return (
